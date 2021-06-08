@@ -1,0 +1,52 @@
+{
+  "name": "lab8",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:3004",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.6.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "http-proxy": "^1.17.0",
+    "mongodb": "^3.2.3",
+    "mongodb-client-encryption": "^1.2.4",
+    "mongoose": "^5.12.8",
+    "mongoose-hidden": "^1.9.1",
+    "react": "^16.8.1",
+    "react-bootstrap": "^1.6.1",
+    "react-dom": "^16.8.1",
+    "react-google-recaptcha": "^2.1.0",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "2.1.5",
+    "react-utils": "^1.0.0",
+    "redis": "^2.8.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "ws": "^6.2.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "build-gateway": "docker build -f devops/gateway.Dockerfile -t gateway . && docker tag gateway bparra/gateway && docker push bparra/gateway",
+    "build-websocket": "docker build -f devops/websocket.Dockerfile -t websocket-demo . && docker tag websocket-demo bparra/websocket-demo && docker push bparra/websocket-demo",
+    "build-messanger": "docker build -f devops/messanger.Dockerfile -t messanger-demo . && docker tag messanger-demo bparra/messanger-demo && docker push bparra/messanger-demo",
+    "build-frontend": "docker build -f devops/frontend.Dockerfile -t react-demo . && docker tag react-demo bparra/react-demo && docker push bparra/react-demo",
+    "build-all-docker": "",
+    "deploy": "docker-compose -f devops/docker-compose.yml pull && docker stack deploy -c devops/docker-compose.yml message-app",
+    "stop": "docker stack remove message-app"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
